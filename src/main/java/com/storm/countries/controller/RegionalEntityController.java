@@ -42,4 +42,10 @@ public class RegionalEntityController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteRegionalEntityById(@PathVariable Long id) {
+        service.deleteRegionalEntityById(id);
+        return ResponseEntity.ok().build();
+    }
 }

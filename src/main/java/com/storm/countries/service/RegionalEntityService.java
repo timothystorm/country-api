@@ -2,6 +2,7 @@ package com.storm.countries.service;
 
 import com.storm.countries.model.entity.RegionalEntity;
 import com.storm.countries.repository.RegionalEntityRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class RegionalEntityService {
     }
 
     public List<RegionalEntity> getAllRegionalEntities() {
-        return repository.findAll();
+        return repository.findAll(Sort.by(Sort.Direction.ASC, "name"));
     }
 
     public Optional<RegionalEntity> getRegionalEntityById(long id) {
