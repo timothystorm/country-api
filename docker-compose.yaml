@@ -1,38 +1,21 @@
-name: countries_app
+name: country
 services:
-  app:
+  springboot:
     container_name: api
-    image: 'docker-spring-boot-postgres:latest'
+    image: springboot-api:1.0.0
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/regions
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=socrates
-    depends_on:
-      - db
     networks:
       - app-network
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
 
-  db:
-    image: postgres:latest
-    container_name: db
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=socrates
-      - POSTGRES_DB=regions
-    ports:
-      - "5432:5432"
-    volumes:
-      - db-volume:/var/lib/postgresql/data
-      - ./docker/db:/docker-entrypoint-initdb.d
-    networks:
-      - app-network
-volumes:
-  db-volume:
 networks:
   app-network:
-    driver: bridge
+    external: true

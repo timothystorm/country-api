@@ -1,4 +1,6 @@
+# Container for Spring Boot
 FROM openjdk:17-jdk-slim
 VOLUME /tmp
-COPY build/libs/*.jar application.jar
-ENTRYPOINT ["java", "-Xmx2048M", "-jar","/application.jar"]
+ARG JAR_FILE=build/libs/countries-api.jar
+COPY ${JAR_FILE} countries-api.jar
+ENTRYPOINT ["java","-jar","/countries-api.jar"]
