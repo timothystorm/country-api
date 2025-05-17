@@ -23,4 +23,4 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: 📦 Test and build
-        run: ./gradlew clean build --console=plain -Dorg.gradle.logging.level=warn
+        run: ./gradlew clean build --console=auto -Dorg.gradle.logging.level=warn
