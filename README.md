@@ -6,6 +6,12 @@ deployment skills.
 
 ---
 
+## 👷Contributors
+
+- [Timothy Storm](mailto:timothystorm@gmail.com)
+
+---
+
 ## 🧩 Features
 
 - RESTful API for country and regional data
