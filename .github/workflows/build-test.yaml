@@ -19,8 +19,8 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: 🛠️ Grant permission to execute Gradle
+      - name: 🛠️ Grant permissions
         run: chmod +x ./gradlew
 
-      - name: 📦 Build and test with Gradle
+      - name: 📦 Test and build
         run: ./gradlew clean build
