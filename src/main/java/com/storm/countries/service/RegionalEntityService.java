@@ -34,9 +34,9 @@ public class RegionalEntityService {
         updatedEntity.setName(entity.getName());
         updatedEntity.setCapital(entity.getCapital());
         updatedEntity.setPopulation(entity.getPopulation());
-        updatedEntity.setSquareKilometers(entity.getSquareKilometers());
-        updatedEntity.setHiAltitude(entity.getHiAltitude());
-        updatedEntity.setLoAltitude(entity.getLoAltitude());
+        updatedEntity.setArea(entity.getArea());
+        updatedEntity.setAltitudeHi(entity.getAltitudeHi());
+        updatedEntity.setAltitudeLo(entity.getAltitudeLo());
         return repository.save(updatedEntity);
     }
 

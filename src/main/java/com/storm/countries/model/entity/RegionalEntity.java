@@ -20,14 +20,17 @@ public class RegionalEntity {
     @Column(nullable = false)
     private Integer population;
 
+    // km^2
     @Column(nullable = false)
-    private Integer squareKilometers;
+    private Integer area;
 
+    // meters
     @Column(nullable = false)
-    private Integer hiAltitude;
+    private Integer altitudeHi;
 
+    // meters
     @Column(nullable = false)
-    private Integer loAltitude;
+    private Integer altitudeLo;
 }
 
 
