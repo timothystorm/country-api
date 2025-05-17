@@ -30,11 +30,19 @@ dependencies {
     testImplementation 'com.h2database:h2'
 }
 
-tasks.named('test') {
+test {
     useJUnitPlatform()
     jvmArgs "-Xshare:off"
+    testLogging {
+        events "passed", "skipped", "failed"        // show these events
+        exceptionFormat "full"                      // full stack trace
+        showCauses true
+        showExceptions true
+        showStackTraces true
+    }
 }
 
 bootJar {
     archiveFileName = 'countries-api.jar'
 }
+
