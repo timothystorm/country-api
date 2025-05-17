@@ -9,7 +9,12 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+
     steps:
+      # Ensure previous builds don't affect this build
+      - name: 🧼 Cleanup
+        run: rm -rf build/
+
       - name: 🧾 Checkout source code
         uses: actions/checkout@v4
 
@@ -19,8 +24,11 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: 🛠️ Grant permissions
+      - name: 🔑 Grant permissions
         run: chmod +x ./gradlew
 
-      - name: 📦 Test and build
+      - name: 🛠️ Test and build
         run: ./gradlew clean build --console=auto -Dorg.gradle.logging.level=warn
+
+      - name: 🐳 Build Docker Image
+        run: docker build -t country-api:${{ github.sha }} .

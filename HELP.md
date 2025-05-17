@@ -20,7 +20,17 @@ docker compose -f docker-compose.pg.yaml down
 ./gradlew bootRun -Dspring.profiles.active=dev
 ```
 
-## 🚀 Running in Production (Dockerized)
+## 🐳 Running in Production (Dockerized)
+
+### 🛠️ 1. Build for production
+
+```bash
+./gradlew bootJar -x test
+```
+
+> It is assumed tests are run in the ci/cd pipeline before packing the container
+
+### 🚀 2. Run the container
 
 ```bash
 ./build-network-bridge.sh && docker compose up --build -d
@@ -30,15 +40,8 @@ docker compose -f docker-compose.pg.yaml down
 > - The api app is served on port 8080
 > - DB settings are pulled by `docker compose` as `.env` variables.
 
-### 🛑 Stop docker container
+### 🛑 3. Stop the container
 
 ```bash
 docker compose down
 ```
-
-## 🛠️ Build for production
-
-```bash
-./gradlew bootJar -x test
-```
-> It is assumed tests are run in the ci/cd pipeline before packing the container
