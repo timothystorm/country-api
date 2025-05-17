@@ -1,7 +1,7 @@
-name: country
+name: country-api
 services:
   springboot:
-    container_name: api
+    container_name: springboot
     image: springboot-api:1.0.0
     build:
       context: .
@@ -12,9 +12,9 @@ services:
       - app-network
     environment:
       SPRING_PROFILES_ACTIVE: prod
-      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
-      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
-      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      SPRING_DATASOURCE_URL: ${DB_URL}
+      SPRING_DATASOURCE_USERNAME: ${DB_USER}
+      SPRING_DATASOURCE_PASSWORD: ${DP_PASS}
 
 networks:
   app-network:

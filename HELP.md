@@ -5,7 +5,13 @@
 ### Start the PostgreSQL container
 
 ```bash
-docker compose -f docker-compose.postegsql.yaml up -d
+docker compose -f docker-compose.pg.yaml up -d
+```
+
+### 🛑 Stop PostgreSQL container
+
+```bash
+docker compose -f docker-compose.pg.yaml down
 ```
 
 ### Start the app

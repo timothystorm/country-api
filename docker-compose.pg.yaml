@@ -1,16 +1,17 @@
 # DB used for localhost development only!
-name: country
+name: country-db
 services:
   postgres:
-    container_name: country-db
+    container_name: postgres
     image: postgres:16
     environment:
-      POSTGRES_DB: regions
-      POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "Y42jWJ1fDjqh"
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DP_PASS}
     ports:
       - "5432:5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data
+
 volumes:
-  pgdata:
+  postgres-data:
