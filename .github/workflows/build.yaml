@@ -1,22 +1,17 @@
 name: Build
 run-name: 🛠️ Build - ${{ github.actor }}
 on:
-  #  push:
-  #    branches:
-  #     - main
-  #     - 'release/**'
-  #     - 'bugfix/**'
-  #     - 'hotfix/**'
-  #     - 'chore/**'
-  #     - 'docs/**'
-  #  pull_request:
-  #    branches:
-  #      - main
-  #      - 'release/**'
-  #      - 'bugfix/**'
-  #      - 'hotfix/**'
-  #      - 'chore/**'
-  #      - 'docs/**'
+  push:
+    branches:
+      - 'feature/**'
+      - 'bugfix/**'
+      - 'hotfix/**'
+      - 'chore/**'
+      - 'docs/**'
+  pull_request:
+    branches:
+      - main
+      - 'release/**'
   workflow_dispatch: # allow manual triggering
   workflow_call: # chainable
 
@@ -31,7 +26,7 @@ jobs:
       - name: 🧼 Cleanup
         run: rm -rf build/
 
-      - name: 🧾 Checkout source code
+      - name: 📥 Checkout source code
         uses: actions/checkout@v4
 
       - name: ☕ Set up Java
@@ -60,5 +55,5 @@ jobs:
       - name: ⬆️ Store image artifact
         uses: actions/upload-artifact@v4
         with:
-          name: country-api
+          name: "${{ env.API_IMAGE_NAME }}"
           path: ${{ env.API_IMAGE_NAME }}.tar.gz

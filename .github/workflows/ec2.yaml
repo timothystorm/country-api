@@ -19,13 +19,16 @@ on:
 jobs:
   ec2:
     runs-on: ubuntu-latest
+    env:
+      API_IMAGE_NAME: country-api
+      API_IMAGE_VERSION: ${{ github.sha }}
 
     steps:
       # only works when run in same workflow scope as actions/upload-artifact@v4 - see: release.yaml
       - name: ⬇️ Download image artifact
         uses: actions/download-artifact@v4
         with:
-          name: country-api
+          name: "${{ API_IMAGE_NAME }}"
 
       - name: 🔐 Setup SSH key
         run: |
@@ -44,11 +47,11 @@ jobs:
         run: |
           ssh -i key.pem -o StrictHostKeyChecking=no "${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}" << 'EOF'
           cd ~/release
-          gunzip -f country-api.tar.gz
+          gunzip -f "${{ API_IMAGE_NAME }}.tar.gz"
           
           docker image prune -a --force --filter "until=4h"
-          docker load < country-api.tar
-          docker stop country-api || true && docker rm country-api || true
+          docker load < "${{ API_IMAGE_NAME }}.tar"
+          docker stop "${{ API_IMAGE_NAME }}" || true && docker rm "${{ API_IMAGE_NAME }}" || true
           docker run -d \
             --restart unless-stopped \
             --network country-net \
@@ -56,6 +59,6 @@ jobs:
             -e SPRING_DATASOURCE_USERNAME=${{ secrets.RDS_DATASOURCE_USERNAME }} \
             -e SPRING_DATASOURCE_PASSWORD=${{ secrets.RDS_DATASOURCE_PASSWORD }} \
             -p 8080:8080 \
-            --name country-api \
-            country-api:${{ github.sha }}
+            --name "${{ API_IMAGE_NAME }}" \
+            "${{ API_IMAGE_NAME }}:${{ API_IMAGE_VERSION }}"
           EOF
