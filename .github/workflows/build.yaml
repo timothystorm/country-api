@@ -46,11 +46,10 @@ jobs:
       - name: 🧪+ 🛠️ Test and build app
         run: ./gradlew clean build --console=auto -Dorg.gradle.logging.level=LIFECYCLE
 
-      # build multi-environment image: linux/arm64, x86_64/amd64
+      # build multi-environment (multi-manifest) image: linux/arm64, x86_64/amd64
       - name: 🐳 Build image
         run: |
-          docker buildx build \
-          --platform linux/amd64,linux/arm64 \
+          docker buildx build --platform linux/amd64,linux/arm64 \
           -t "country-api:${{ env.API_IMAGE_VERSION }}" \
           --output type=docker .
 
