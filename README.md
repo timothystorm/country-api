@@ -6,9 +6,9 @@ deployment skills.
 
 ---
 
-## 👷Contributors
+## 👷 Maintainers/Contributors
 
-- [Timothy Storm](mailto:timothystorm@gmail.com)
+- Maintainer: [Timothy Storm](mailto:timothystorm@gmail.com)
 
 ---
 
