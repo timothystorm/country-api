@@ -27,11 +27,8 @@ jobs:
       - name: 🔑 Grant permissions
         run: chmod +x ./gradlew
 
-      - name: 🧪️ Run unit tests
-        run: ./gradlew test --console=auto
-
-      - name: 🛠️ Build app
-        run: ./gradlew clean build -x test --console=auto -Dorg.gradle.logging.level=LIFECYCLE
+      - name: 🧪+ 🛠️ Test and build app
+        run: ./gradlew clean build --console=auto -Dorg.gradle.logging.level=LIFECYCLE
 
       - name: 🐳 Build Docker Image
         run: docker build -t country-api:${{ github.sha }} .
