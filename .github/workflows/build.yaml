@@ -3,6 +3,7 @@ run-name: 🛠️ Build - ${{ github.actor }}
 on:
   push:
     branches:
+      - main
       - 'chore/**'
       - 'ci/**'
       - 'docs/**'
