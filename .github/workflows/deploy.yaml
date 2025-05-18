@@ -20,8 +20,13 @@ jobs:
           echo ${{ secrets.EC2_KEY }} > key.pem
           chmod 600 key.pem
 
-      - name: Tail pem
-        run: echo ${{ secrets.EC2_KEY }}
+      - name: Check if secret exists
+        run: |
+          if [ -z "${{ secrets.EC2_KEY }}" ]; then
+            echo "❌ EC2_KEY is NOT set"
+          else
+            echo "✅ EC2_KEY is available"
+          fi
 
       - name: 📤 Copy to EC2
         run: |
