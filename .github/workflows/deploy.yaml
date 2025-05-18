@@ -21,7 +21,7 @@ jobs:
           chmod 600 key.pem
 
       - name: Tail pem
-        run: tail key.pem
+        run: echo ${{ secrets.EC2_KEY }}
 
       - name: 📤 Copy to EC2
         run: |
