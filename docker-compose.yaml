@@ -9,7 +9,7 @@ services:
     ports:
       - "8080:8080"
     networks:
-      - country-network
+      - country-net
     environment:
       SPRING_PROFILES_ACTIVE: prod
       SPRING_DATASOURCE_URL: ${DB_CONTAINER_URL}
@@ -17,5 +17,5 @@ services:
       SPRING_DATASOURCE_PASSWORD: ${DB_PASS}
 
 networks:
-  country-network:
+  country-net:
     external: true

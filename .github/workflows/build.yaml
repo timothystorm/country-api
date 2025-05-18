@@ -1,18 +1,19 @@
-name: CI
-run-name: Build main - ${{ github.actor }} 🚀
+name: Build
+run-name: Build ${{ github.repository }} tiggeered by ${{ github.actor }}
 on:
   push:
-    branches: [main]
+    branches: [ main, dev, release ]
   pull_request:
-    branches: [main]
+    branches: [ main, dev, release ]
   workflow_dispatch: # allow manual triggering
 
 jobs:
-  test-and-build:
+  build:
     runs-on: ubuntu-latest
+    env:
+      API_IMAGE: country-api
 
     steps:
-      # Ensure previous builds don't affect this build
       - name: 🧼 Cleanup
         run: rm -rf build/
 
@@ -31,5 +32,14 @@ jobs:
       - name: 🧪+ 🛠️ Test and build app
         run: ./gradlew clean build --console=auto -Dorg.gradle.logging.level=LIFECYCLE
 
-#      - name: 🐳 Build Docker Image
-#        run: docker build -t country-api:${{ github.sha }} .
+      - name: 🐳 Build image
+        run: docker build -t country-api:${{ github.sha }} .
+
+      - name: 📦 Package image
+        run: docker save $API_IMAGE:${{ github.sha }} | gzip > $API_IMAGE.tar.gz
+
+      - name: ⬆️ Store image
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-image
+          path: $API_IMAGE.tar.gz
