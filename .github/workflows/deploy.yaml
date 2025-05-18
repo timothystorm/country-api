@@ -22,13 +22,21 @@ jobs:
       - name: Debug available environment
         run: printenv | sort
 
-      - name: Check if secret exists
+      - name: 🕵️ Check if secrets are available
         run: |
+          if [ -z "${{ secrets.EC2_USER }}" ]; then
+            echo "❌ EC2_USER is NOT available"
+          else
+            echo "✅ EC2_USER is available"
+          fi
+
           if [ -z "${{ secrets.EC2_KEY }}" ]; then
-            echo "❌ EC2_KEY is NOT set"
+            echo "❌ EC2_KEY is NOT available"
           else
             echo "✅ EC2_KEY is available"
           fi
+      - name: 🧪 Print available environment
+        run: printenv | sort
 
       - name: 📤 Copy to EC2
         run: |
