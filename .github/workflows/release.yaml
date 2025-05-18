@@ -1,9 +1,6 @@
 name: Release
 run-name: 🚀 Release - ${{ github.actor }}
 on:
-  pull_request:
-    branches:
-      - 'release/**'
   workflow_dispatch: # allow manual triggering
 
 jobs:
