@@ -1,47 +1,59 @@
 # Runners
 
-## 🚀 Running in Development
+## 👷 Running in Development
 
-### Start the PostgreSQL container
+### 1. 🐘 Start PostgreSQL (container)
 
 ```bash
 docker compose -f docker-compose.pg.yaml up -d
 ```
 
-### 🛑 Stop PostgreSQL container
+### 2. ✨ Start the app
+
+```bash
+./gradlew bootRun
+```
+
+### 3. 🛑 Stop PostgreSQL (optional)
 
 ```bash
 docker compose -f docker-compose.pg.yaml down
 ```
 
-### Start the app
+## 🐳 Running in a container
+
+### 1. 🛠️ Build the app
 
 ```bash
-./gradlew bootRun -Dspring.profiles.active=dev
+./gradlew bootJar -x test --rerun-tasks
 ```
 
-## 🐳 Running in Production (Dockerized)
+### 🕸️ 2. Build network bridge
 
-### 🛠️ 1. Build for production
+Only needs to be built 1x.
+
+> Need to create a network bridge to allow for cross container communication
 
 ```bash
-./gradlew bootJar -x test
+./build-network-bridge.sh country-network
 ```
 
-> It is assumed tests are run in the ci/cd pipeline before packing the container
-
-### 🚀 2. Run the container
+### 3. 🚀 Build and run container
 
 ```bash
-./build-network-bridge.sh && docker compose up --build -d
+docker compose up --build -d
 ```
 
-> - Need to create a network bridge to allow for cross container communication
-> - The api app is served on port 8080
-> - DB settings are pulled by `docker compose` as `.env` variables.
+> The api is served on port 8080 - http://localhost:8080/api/regionalentities
 
-### 🛑 3. Stop the container
+### 4. 🛑 Stop the container
 
 ```bash
 docker compose down
+```
+
+### 5. 🪓 Stop network bridge (optional)
+
+```bash
+docker network rm country-network
 ```

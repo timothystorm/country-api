@@ -66,7 +66,7 @@ Includes CI/CD examples that:
 - Cloud-native architecture on both AWS and Azure
 - Secure configuration practices (no credentials in repo)
 
-## 📌 TODO / Future Enhancements
+## 🚧 TODO / Future Enhancements
 
 - Add unit and integration tests
 - Add Swagger/OpenAPI documentation

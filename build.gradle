@@ -18,12 +18,14 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
     annotationProcessor 'org.projectlombok:lombok:1.18.34'
     compileOnly 'org.projectlombok:lombok:1.18.34'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     implementation 'org.projectlombok:lombok:1.18.34'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'io.github.cdimascio:dotenv-java:3.2.0'
     runtimeOnly 'org.postgresql:postgresql'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
@@ -45,4 +47,3 @@ test {
 bootJar {
     archiveFileName = 'countries-api.jar'
 }
-

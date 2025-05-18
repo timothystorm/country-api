@@ -1,4 +1,4 @@
-# DB used for localhost development only!
+# DB used for localhost container only!
 name: country-db
 services:
   postgres:
