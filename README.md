@@ -1,4 +1,4 @@
-# 🌍 Country API
+# 🌐 Country API
 
 A Spring Boot microservice for managing and querying country and regional data, including capitals, altitudes,
 population, and land area. Designed to demonstrate practical microservice architecture, containerization, and cloud
