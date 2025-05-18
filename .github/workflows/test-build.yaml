@@ -28,7 +28,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: 🛠️ Test and build
-        run: ./gradlew clean build --console=auto -Dorg.gradle.logging.level=info
+        run: ./gradlew clean build --console=auto -Dorg.gradle.logging.level=LIFECYCLE
 
       - name: 🐳 Build Docker Image
         run: docker build -t country-api:${{ github.sha }} .
