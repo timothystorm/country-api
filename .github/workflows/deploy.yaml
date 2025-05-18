@@ -1,10 +1,6 @@
 name: Deploy
-run-name: Deploy - ${{ github.actor }} 🚀
+run-name: 🚀 Deploy - ${{ github.actor }}
 on:
-  workflow_run:
-    workflows: [ "Build" ]
-    types: [ completed ]
-    branches: [ main ] # TODO: convert to 'release' when done testing
   workflow_dispatch: # allow manual triggering
 
 jobs:
@@ -13,10 +9,11 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
+      # only works when run in same workflow scope as actions/upload-artifact@v4 - see: release.yaml
       - name: ⬇️ Download image artifact
         uses: actions/download-artifact@v4
         with:
-          name: api-image-artifact
+          name: country-api
 
       - name: Display structure of downloaded files
         run: ls -R

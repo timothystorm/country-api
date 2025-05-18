@@ -1,0 +1,14 @@
+name: Release Pipeline
+
+on:
+  push:
+    branches: [ main ] # TODO - change to 'release' when done testing
+  workflow_dispatch: # allow manual triggering
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yaml
+
+  deploy:
+    needs: build
+    uses: ./.github/workflows/deploy.yaml

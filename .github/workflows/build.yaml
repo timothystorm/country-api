@@ -1,10 +1,22 @@
 name: Build
-run-name: Build - ${{ github.actor }}
+run-name: 🛠️ Build - ${{ github.actor }}
 on:
-  push:
-    branches: [ main, dev, release ]
-  pull_request:
-    branches: [ main, dev, release ]
+  #  push:
+  #    branches:
+  #     - main
+  #     - 'release/**'
+  #     - 'bugfix/**'
+  #     - 'hotfix/**'
+  #     - 'chore/**'
+  #     - 'docs/**'
+  #  pull_request:
+  #    branches:
+  #      - main
+  #      - 'release/**'
+  #      - 'bugfix/**'
+  #      - 'hotfix/**'
+  #      - 'chore/**'
+  #      - 'docs/**'
   workflow_dispatch: # allow manual triggering
 
 jobs:
@@ -42,5 +54,5 @@ jobs:
       - name: ⬆️ Store image artifact
         uses: actions/upload-artifact@v4
         with:
-          name: api-image-artifact
+          name: country-api
           path: ${{ env.API_IMAGE_NAME }}.tar.gz
