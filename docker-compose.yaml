@@ -1,7 +1,6 @@
-name: country-api
 services:
   springboot:
-    container_name: springboot
+    container_name: country-api
     image: springboot-api:1.0.0
     build:
       context: .

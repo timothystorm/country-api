@@ -1,7 +1,6 @@
 name: Deploy
 run-name: 🚀 Deploy - ${{ github.actor }}
 on:
-  workflow_dispatch: # allow manual triggering
   workflow_call: # chainable
     secrets:
       EC2_USER:
@@ -62,10 +61,10 @@ jobs:
           ssh -i key.pem -o StrictHostKeyChecking=no "${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}" << 'EOF'
           cd ~/release
           gunzip -f country-api.tar.gz
+          
+          docker image prune -a --force --filter "until=24h"
           docker load < country-api.tar
-          
           docker stop country-api || true && docker rm country-api || true
-          
           docker run -d \
             --restart unless-stopped \
             --network country-net \
@@ -73,5 +72,6 @@ jobs:
             -e SPRING_DATASOURCE_USERNAME=${{ secrets.RDS_DATASOURCE_USERNAME }} \
             -e SPRING_DATASOURCE_PASSWORD=${{ secrets.RDS_DATASOURCE_PASSWORD }} \
             --name country-api \
+            -p 8080:8080 \
             country-api:${{ github.sha }}
           EOF
