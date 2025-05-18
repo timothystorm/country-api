@@ -13,10 +13,10 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
-      - name: ⬆️ Download image artifact
+      - name: ⬇️ Download image artifact
         uses: actions/download-artifact@v4
         with:
-          path: "*.tar.gz"
+          name: api-image-artifact
 
       - name: Display structure of downloaded files
         run: ls -R
