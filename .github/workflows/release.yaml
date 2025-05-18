@@ -6,11 +6,11 @@ on:
   workflow_dispatch: # allow manual triggering
 
 jobs:
-  build:
+  prepare:
     uses: ./.github/workflows/build.yaml
 
-  deploy:
-    needs: build
+  install:
+    needs: prepare
     uses: ./.github/workflows/deploy.yaml
     secrets:
       EC2_USER: ${{ secrets.EC2_USER }}
