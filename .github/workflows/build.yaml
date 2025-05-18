@@ -1,5 +1,5 @@
 name: Build
-run-name: Build ${{ github.repository }} tiggeered by ${{ github.actor }}
+run-name: Build - ${{ github.actor }}
 on:
   push:
     branches: [ main, dev, release ]

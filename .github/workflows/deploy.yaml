@@ -1,5 +1,5 @@
 name: Deploy
-run-name: Deploy ${{ github.repository }} to EC2, tiggeered by ${{ github.actor }} 🚀
+run-name: Deploy - ${{ github.actor }} 🚀
 on:
   workflow_run:
     workflows: [ "Build" ]
@@ -8,7 +8,7 @@ on:
   workflow_dispatch: # allow manual triggering
 
 jobs:
-  deplooy:
+  deploy:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
