@@ -15,13 +15,13 @@ jobs:
         with:
           name: country-api
 
-      - name: Display structure of downloaded files
-        run: ls -R
-
       - name: 🔐 Setup SSH key
         run: |
-          echo "${{ secrets.EC2_KEY }}" > key.pem
+          echo ${{ secrets.EC2_KEY }} > key.pem
           chmod 600 key.pem
+
+      - name: Tail pem
+        run: tail key.pem
 
       - name: 📤 Copy to EC2
         run: |

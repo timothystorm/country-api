@@ -1,5 +1,5 @@
-name: Release Pipeline
-
+name: Release
+run-name: 🚀 Release - ${{ github.actor }}
 on:
   push:
     branches: [ main ] # TODO - change to 'release' when done testing
