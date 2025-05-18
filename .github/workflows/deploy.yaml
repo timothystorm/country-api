@@ -27,6 +27,13 @@ jobs:
         with:
           name: country-api
 
+      - name: 🔐 Setup SSH key
+        run: |
+          echo "${{ secrets.EC2_KEY }}" > key.pem
+          chmod 600 key.pem
+      - name: Debug available environment
+        run: printenv | sort
+
       - name: 📤 Copy to EC2
         run: |
           scp -i key.pem -o StrictHostKeyChecking=no \
