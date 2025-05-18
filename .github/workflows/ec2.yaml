@@ -28,7 +28,7 @@ jobs:
       - name: ⬇️ Download image artifact
         uses: actions/download-artifact@v4
         with:
-          name: "${{ API_IMAGE_NAME }}"
+          name: "${{ env.API_IMAGE_NAME }}"
 
       - name: 🔐 Setup SSH key
         run: |
