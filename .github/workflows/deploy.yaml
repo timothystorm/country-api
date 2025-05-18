@@ -2,6 +2,7 @@ name: Deploy
 run-name: 🚀 Deploy - ${{ github.actor }}
 on:
   workflow_dispatch: # allow manual triggering
+  workflow_call: # chainable
 
 jobs:
   deploy:

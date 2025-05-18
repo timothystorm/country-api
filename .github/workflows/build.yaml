@@ -18,6 +18,7 @@ on:
   #      - 'chore/**'
   #      - 'docs/**'
   workflow_dispatch: # allow manual triggering
+  workflow_call: # chainable
 
 jobs:
   build:
