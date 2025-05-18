@@ -9,9 +9,9 @@ jobs:
   prepare:
     uses: ./.github/workflows/build.yaml
 
-  install:
+  deploy:
     needs: prepare
-    uses: ./.github/workflows/deploy.yaml
+    uses: ./.github/workflows/ec2.yaml
     secrets:
       EC2_USER: ${{ secrets.EC2_USER }}
       EC2_HOST: ${{ secrets.EC2_HOST }}
