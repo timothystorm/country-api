@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       API_IMAGE_NAME: country-api
+      API_IMAGE_VERSION: ${{ github.sha }}
 
     steps:
       - name: 🧼 Cleanup
@@ -33,13 +34,12 @@ jobs:
         run: ./gradlew clean build --console=auto -Dorg.gradle.logging.level=LIFECYCLE
 
       - name: 🐳 Build image
-        run: docker build -t country-api:latest .
+        run: docker build -t "country-api:${{ env.API_IMAGE_VERSION }}" .
 
       - name: 📦 Package image
-        run: docker save "${{ env.API_IMAGE_NAME }}:latest" | gzip > "${{ env.API_IMAGE_NAME }}.tar.gz"
+        run: docker save "${{ env.API_IMAGE_NAME }}:${{ env.API_IMAGE_VERSION }}" | gzip > "${{ env.API_IMAGE_NAME }}.tar.gz"
 
-      - name: ⬆️ Store image
+      - name: ⬆️ Store image artifact
         uses: actions/upload-artifact@v4
         with:
-          name: api-image
-          path: "${{ env.API_IMAGE_NAME }}.tar.gz"
+          path: ${{ env.API_IMAGE_NAME }}.tar.gz

@@ -13,7 +13,7 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
-      - name: ⬆️ Download image
+      - name: ⬆️ Download image artifact
         uses: actions/download-artifact@v4
         with:
           name: api-image
