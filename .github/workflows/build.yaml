@@ -3,15 +3,16 @@ run-name: 🛠️ Build - ${{ github.actor }}
 on:
   push:
     branches:
-      - 'feature/**'
-      - 'bugfix/**'
-      - 'hotfix/**'
       - 'chore/**'
+      - 'ci/**'
       - 'docs/**'
+      - 'feat/**'
+      - 'fix/**'
+      - 'hot/**'
+      - 'test/**'
   pull_request:
     branches:
       - main
-      - 'release/**'
   workflow_dispatch: # allow manual triggering
   workflow_call: # chainable
 

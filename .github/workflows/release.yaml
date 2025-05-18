@@ -2,7 +2,8 @@ name: Release
 run-name: 🚀 Release - ${{ github.actor }}
 on:
   push:
-    branches: [ main ] # TODO - change to release when testing is done
+    branches:
+      - 'release/**'
   workflow_dispatch: # allow manual triggering
 
 jobs:
