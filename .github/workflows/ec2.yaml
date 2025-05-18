@@ -46,7 +46,7 @@ jobs:
           cd ~/release
           gunzip -f country-api.tar.gz
           
-          docker image prune -a --force --filter "until=24h"
+          docker image prune -a --force --filter "until=4h"
           docker load < country-api.tar
           docker stop country-api || true && docker rm country-api || true
           docker run -d \
