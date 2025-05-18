@@ -27,29 +27,6 @@ jobs:
         with:
           name: country-api
 
-      - name: 🔐 Setup SSH key
-        run: |
-          echo "${{ secrets.EC2_KEY }}" > key.pem
-          chmod 600 key.pem
-      - name: Debug available environment
-        run: printenv | sort
-
-      - name: 🕵️ Check if secrets are available
-        run: |
-          if [ -z "${{ secrets.EC2_USER }}" ]; then
-            echo "❌ EC2_USER is NOT available"
-          else
-            echo "✅ EC2_USER is available"
-          fi
-
-          if [ -z "${{ secrets.EC2_KEY }}" ]; then
-            echo "❌ EC2_KEY is NOT available"
-          else
-            echo "✅ EC2_KEY is available"
-          fi
-      - name: 🧪 Print available environment
-        run: printenv | sort
-
       - name: 📤 Copy to EC2
         run: |
           scp -i key.pem -o StrictHostKeyChecking=no \
@@ -71,7 +48,7 @@ jobs:
             -e SPRING_DATASOURCE_URL=${{ secrets.RDS_DATASOURCE_URL }} \
             -e SPRING_DATASOURCE_USERNAME=${{ secrets.RDS_DATASOURCE_USERNAME }} \
             -e SPRING_DATASOURCE_PASSWORD=${{ secrets.RDS_DATASOURCE_PASSWORD }} \
-            --name country-api \
             -p 8080:8080 \
+            --name country-api \
             country-api:${{ github.sha }}
           EOF
