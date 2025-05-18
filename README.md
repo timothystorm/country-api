@@ -71,7 +71,6 @@ Includes CI/CD examples that:
 - Add unit and integration tests
 - Add Swagger/OpenAPI documentation
 - Add auth with Spring Security or JWT
-- CI pipeline to spin up VMs on demand
 
 ## 🧠 Why This Project?
 
