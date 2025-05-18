@@ -28,7 +28,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: 🛠️ Test and build
-        run: ./gradlew clean build --console=auto -Dorg.gradle.logging.level=warn
+        run: ./gradlew clean build --console=auto -Dorg.gradle.logging.level=info
 
       - name: 🐳 Build Docker Image
         run: docker build -t country-api:${{ github.sha }} .
