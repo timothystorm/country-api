@@ -1,9 +1,6 @@
 name: Release
 run-name: 🚀 Release - ${{ github.actor }}
 on:
-  push:
-    branches:
-      - 'release/**'
   pull_request:
     branches:
       - 'release/**'
