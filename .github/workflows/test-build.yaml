@@ -1,10 +1,11 @@
-name: Test and Build
-run-name: Main Build - ${{ github.actor }} 🚀
+name: CI
+run-name: /main - ${{ github.actor }} 🚀
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch: # allow manual triggering
 
 jobs:
   test-and-build:
@@ -30,5 +31,5 @@ jobs:
       - name: 🧪+ 🛠️ Test and build app
         run: ./gradlew clean build --console=auto -Dorg.gradle.logging.level=LIFECYCLE
 
-      - name: 🐳 Build Docker Image
-        run: docker build -t country-api:${{ github.sha }} .
+#      - name: 🐳 Build Docker Image
+#        run: docker build -t country-api:${{ github.sha }} .
