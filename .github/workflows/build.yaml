@@ -46,7 +46,7 @@ jobs:
         run: |
           docker buildx build \
           --platform linux/arm64 \
-          -t "country-api:${{ env.API_IMAGE_VERSION }}" \
+          -t "${{ env.API_IMAGE_NAME }}:${{ env.API_IMAGE_VERSION }}" \
           --output type=docker .
 
       - name: 📦 Package image
