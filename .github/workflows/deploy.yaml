@@ -3,6 +3,19 @@ run-name: 🚀 Deploy - ${{ github.actor }}
 on:
   workflow_dispatch: # allow manual triggering
   workflow_call: # chainable
+    secrets:
+      EC2_USER:
+        required: true
+      EC2_HOST:
+        required: true
+      EC2_KEY:
+        required: true
+      RDS_DATASOURCE_URL:
+        required: true
+      RDS_DATASOURCE_USERNAME:
+        required: true
+      RDS_DATASOURCE_PASSWORD:
+        required: true
 
 jobs:
   deploy:
