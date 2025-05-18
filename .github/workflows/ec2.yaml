@@ -49,7 +49,7 @@ jobs:
           cd ~/release
           gunzip -f "${{ env.API_IMAGE_NAME }}.tar.gz"
           
-          docker image prune -a --force --filter "until=4h"
+          docker image prune -a --force --filter "until=2h"
           docker load < "${{ env.API_IMAGE_NAME }}.tar"
           docker stop "${{ env.API_IMAGE_NAME }}" || true && docker rm "${{ env.API_IMAGE_NAME }}" || true
           docker run -d \
