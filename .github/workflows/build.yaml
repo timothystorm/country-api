@@ -50,7 +50,7 @@ jobs:
       - name: 🐳 Build image
         run: |
           docker buildx build \
-          --platform linux/amd64,linux/arm64 \
+          --platform linux/arm64 \
           -t "country-api:${{ env.API_IMAGE_VERSION }}" 
           --output type=docker .
 
