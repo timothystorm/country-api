@@ -55,12 +55,12 @@ jobs:
         run: |
           scp -i key.pem -o StrictHostKeyChecking=no \
           country-api.tar.gz \
-          "${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/home/ec2-user/deploy/"
+          "${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:~/release/"
 
       - name: 🚀 Deploy Container on EC2
         run: |
           ssh -i key.pem -o StrictHostKeyChecking=no "${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}" << 'EOF'
-          cd ~/deploy
+          cd ~/release
           gunzip -f country-api.tar.gz
           docker load < country-api.tar
           
