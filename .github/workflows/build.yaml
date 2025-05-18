@@ -42,5 +42,4 @@ jobs:
       - name: ⬆️ Store image artifact
         uses: actions/upload-artifact@v4
         with:
-          name: api-image
           path: ${{ env.API_IMAGE_NAME }}.tar.gz
