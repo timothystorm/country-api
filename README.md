@@ -30,7 +30,7 @@ deployment skills.
 | Database   | PostgreSQL (Dockerized)   |
 | Container  | Docker                    |
 | Deployment | AWS EC2, Azure VM         |
-| CI/CD      | GitHub Actions (optional) |
+| CI/CD      | GitHub Actions            |
 
 ---
 
