@@ -47,6 +47,8 @@ Includes CI/CD examples that:
 - Copy it to the VM
 - Run the container with environment-injected DB credentials
 
+---
+
 ## 📚 API Overview
 
 | Method | Endpoint                   | Description               |
@@ -66,22 +68,26 @@ Includes CI/CD examples that:
 - Cloud-native architecture on both AWS and Azure
 - Secure configuration practices (no credentials in repo)
 
+---
+
 ## 🤝 Conventions & Standards
 
 - 🪾 [Trunk based development](https://trunkbaseddevelopment.com/)
   - short lived branches - no more than a week
-- ✅ 90% Code coverage minimum to PR into main
-- 🌵 [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
 - 🪟 [No broken windows](https://blog.codinghorror.com/the-broken-window-theory/)
   - treat warning like errors
   - all errors are treated as critical and to be fixed immediately
-- 🩹 Refactoring is expected and is NOT a dirty word
+- 🚑 Refactoring is expected and is NOT a dirty word
+
+---
 
 ## 🚧 TODO / Future Enhancements
 
 - Add unit and integration tests
 - Add Swagger/OpenAPI documentation
 - Add auth with Spring Security or JWT
+
+---
 
 ## 🧠 Why This Project?
 
@@ -90,6 +96,8 @@ This project was built to showcase end-to-end backend development and deployment
 - Real-world microservice setup
 - Secure and portable deployment pipelines
 - Hands-on cloud and Docker experience
+
+---
 
 ## 🏛️ Architecture
 
